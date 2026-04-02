@@ -11,4 +11,12 @@ public class WebController {
     public String productPage(@RequestParam String id) {
         return "forward:/pages/product.html";
     }
+    @GetMapping("")
+    public String indexPage() {
+        return "forward:/pages/index.html";
+    }
+    @GetMapping("/cart")
+    public String cartPage() {
+        return "forward:/pages/cart.html";
+    }
 }

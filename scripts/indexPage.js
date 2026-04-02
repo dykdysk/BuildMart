@@ -45,7 +45,7 @@ function renderProductCards(products) {
                     </div>
                     <p class="text-2xl font-bold text-[#101828]">$${product.price.toFixed(2)}</p>
                     <p class="text-sm text-[#6A7282]">${product.category}</p>
-                    <button class="flex items-center justify-center gap-2 mt-2 w-full py-2 text-sm font-medium text-white bg-[#F54900] hover:bg-[#b53600]  rounded-lg transition">
+                    <button data-id="${product.id}" class="add-to-cart-button flex items-center justify-center gap-2 mt-2 w-full py-2 text-sm font-medium text-white bg-[#F54900] hover:bg-[#b53600]  rounded-lg transition">
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 "><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
                              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                        </svg>
@@ -53,6 +53,13 @@ function renderProductCards(products) {
                     </button>
                 </div>
             </div>`;
+    });
+    const buttons = container.querySelectorAll(".add-to-cart-button");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const productId = btn.getAttribute("data-id");
+            addToCart(productId);
+        });
     });
 }
 
@@ -238,3 +245,15 @@ nextBtn.addEventListener("click", async function(){
     sortProducts(sortSelector.value);
     updatePagination();
 });
+
+function addToCart(productId){
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    if (cart[productId]) {
+        cart[productId] = cart[productId] + 1;
+    }
+    else {
+        cart[productId] = 1;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("prikol");
+}

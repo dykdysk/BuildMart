@@ -1,7 +1,6 @@
 package com.example.buildMart.repositories.interfaces;
 
 import com.example.buildMart.models.Product;
-import com.example.buildMart.repositories.ProductCustomRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -55,7 +55,7 @@
         </div>
     </header>
     <main class="flex-1 bg-white text-[#4A5565]">
-        <div class="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8">
+        <div class="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8" id="cart-main-container">
             <h1 class="text-4xl font-bold text-[#101828] mb-8">Shopping Cart</h1>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2">
@@ -66,7 +66,7 @@
                             <div class="col-span-2 text-center">Quantity</div>
                             <div class="col-span-2 text-right">Total</div>
                         </div>
-                        <div class="divide-y divide-[#E5E7EB]">
+                        <div class="divide-y divide-[#E5E7EB]" id="cart-products">
                             <div class="p-4 md:p-6">
                                 <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                                     <div class="md:col-span-6 flex gap-4">
@@ -121,34 +121,31 @@
                     <div class="mt-6 bg-white border border-[#E5E7EB] rounded-lg p-6">
                         <h3 class="text-black font-semibold mb-3">Have a promo code?</h3>
                         <div class="flex gap-2">
-                            <input type="text" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" value="">
-                            <button class="px-6 py-2 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg transition">
+                            <input type="text" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" id="promocode-input" value="">
+                            <button class="px-6 py-2 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg transition" id="promocode-button">
                                 Apply
                             </button>
                         </div>
-                        <p class="text-sm text-[#F54900] mt-2">Promo code applied! You saved 10%</p>
+                        <p class="text-sm text-grey mt-2" id="promocode-text-info">Try code "SAVE10" for 10% off</p>
                     </div>
                 </div>
                 <div class="lg:col-span-1">
                     <div class="bg-white border border-gray-200 rounded-lg p-6 top-24">
                         <h2 class="text-black font-bold text-xl mb-6">Order Summary</h2>
-                        <div class="space-y-3 mb-6 pb-6 border-b border-gray-200"><div class="flex justify-between text-[#364153]">
-                            <span>Subtotal</span>
-                            <span>$345.94</span>
+                        <div class="space-y-3 mb-6 pb-6 border-b border-gray-200" id="cart-price-container">
+                            <div class="flex justify-between text-[#364153]">
+                                <span>Subtotal</span>
+                                <span class="price-value" id="price-value-total">$345.94</span>
+                            </div>
+                            <div class="flex justify-between text-[#364153]">
+                                <span>Tax (8%)</span>
+                                <span class="price-value" id="price-value-tax">$32.62</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between text-[#364153]">
-                            <span>Tax (8%)</span>
-                            <span>$32.62</span>
+                        <div class="text-black flex justify-between items-center mb-6 text-xl font-bold">
+                            <span>Total</span>
+                            <span id="cart-price-total">$323.234</span>
                         </div>
-                        <div class="flex justify-between text-[#F54900]">
-                            <span>Discount (10%)</span>
-                            <span>-$23.62</span>
-                        </div>
-                    </div>
-                    <div class="text-black flex justify-between items-center mb-6 text-xl font-bold">
-                        <span>Total</span>
-                        <span>$323.234</span>
-                    </div>
                         <button class="w-full py-4 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition mb-4">
                             Proceed to Checkout
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
@@ -183,16 +180,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <h1 class="text-3xl text-black font-bold mb-4">Your Cart is Empty</h1>
-                <p class="mb-8">Start shopping to add items to your cart</p>
-                <a class="inline-flex items-center gap-2 px-8 py-3 font-medium bg-[#F54900] text-white  hover:bg-[#b53600]  rounded-lg transition" href="../pages/index.html">
-                    Browse Products
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white size-5">
-                        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                    </svg>
-                </a>
             </div>
         </div>
     </main>
@@ -294,5 +281,6 @@
         </div>
     </footer>
 </div>
+<script type="module" src="../scripts/cartPage.js"></script>
 </body>
 </html>

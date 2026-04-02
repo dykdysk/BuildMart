@@ -184,3 +184,39 @@ async function getById(id){
     const DATA = await Api.getById(id);
     return DATA;
 }
+
+function addToCart(productId, quantity){
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    if (cart[productId]) {
+        cart[productId] = cart[productId] + quantity;
+    }
+    else {
+        cart[productId] = quantity;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("prikol");
+}
+
+document.getElementById("reduce-quantity-button").addEventListener("click", function(){
+    const quantityInput = document.getElementById("quantity-input");
+    quantityInput.value = parseInt(quantityInput.value)-1;
+});
+
+document.getElementById("add-quantity-button").addEventListener("click", function(){
+    const quantityInput = document.getElementById("quantity-input");
+    quantityInput.value = parseInt(quantityInput.value)+1;
+});
+
+document.getElementById("add-to-cart-button").addEventListener("click", function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const quantity = parseInt(document.getElementById("quantity-input").value);
+    addToCart(productId, quantity);
+});
+
+document.getElementById("buy-now-button").addEventListener("click", function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const quantity = parseInt(document.getElementById("quantity-input").value);
+    addToCart(productId, quantity);
+});

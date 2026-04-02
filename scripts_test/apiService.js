@@ -65,3 +65,33 @@ export async function getByParams(minPrice, maxPrice, rating, page, size){
         throw new Error("error");
     }
 }
+export async function getByCode(code){
+    try {
+        const response = await fetch(`${url}/promocodes/code/${code}`);
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ message: response.statusText }));
+            throw new Error("error");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('API Request Failed:', error);
+        throw new Error("error");
+    }
+}
+export async function getCart(data){
+    try {
+        const response = await fetch('/cart/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ message: response.statusText }));
+            throw new Error("error");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('API Request Failed:', error);
+        throw new Error("error");
+    }
+}

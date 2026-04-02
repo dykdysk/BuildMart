@@ -23,7 +23,7 @@ public class ProductService {
         return productCustomRepository.findAllByPage(/*sort,*/ page, size);
     }
     public Optional<Product> findById(String id){
-        return  productRepository.findById(id);
+        return productRepository.findById(id);
     }
     public List<Product> findAllByCategory(String category){
         return productCustomRepository.findByCategory(category);
