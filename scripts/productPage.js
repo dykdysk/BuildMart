@@ -1,6 +1,6 @@
 import * as Data from "./data.js";
 import * as Utils from "./utils.js";
-
+import * as Api from "./../scripts_test/apiService.js";
 
 let currentIndex = 0;
 let galleryImages = [];
@@ -87,7 +87,7 @@ function initSpecsAccordion() {
     }
 }
 
-function renderProduct(product, allProducts) {
+async function renderProduct(product) {
     document.getElementById("product-name").textContent = product.name;
     document.getElementById("nav-name").textContent = product.name;
     document.getElementById("product-price").textContent = `$${product.price.toFixed(2)}`;
@@ -126,24 +126,24 @@ function renderProduct(product, allProducts) {
     relatedSection.style.display = "block";
     relatedContainer.innerHTML = "";
 
-    relatedIds.forEach(id => {
-        const related = allProducts.find(p => p.id === id);
+    for (const id of relatedIds) {
+        const related = await getById(id);
         if (!related) return;
 
         const card = document.createElement("a");
-        card.href = `../pages/product.html?id=${related.id}`;
+        card.href = `../product?id=${related.id}`;
         card.className = "group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition block";
 
         card.innerHTML = `
              <div class="group bg-white border border-[#E5E7EB] rounded-lg overflow-hidden hover:shadow-lg transition">
-                    <a href="../pages/product.html?id=${related.id}">
+                    <a href="../product?id=${related.id}">
                         <div class="aspect-square overflow-hidden bg-gray-100">
                             <img src="${related.image}" class="w-full h-full object-cover group-hover:scale-105 transition">
                         </div>
                     </a>
 
                     <div class="p-4 flex flex-col gap-2">
-                        <a href="../pages/product.html?id=${related.id}">
+                        <a href="../product?id=${related.id}">
                             <h3 class="text-[#101828] font-semibold text-lg group-hover:text-[#F54900] transition">${related.name}</h3>
                         </a>
 
@@ -157,28 +157,103 @@ function renderProduct(product, allProducts) {
         `;
 
         relatedContainer.appendChild(card);
-    });
+    }
 }
 
 
 async function initProductPage() {
-    const products = await Data.loadProducts();
     const id = Utils.getProductIdFromUrl();
-
-    const product = products.find(p => p.id === id);
-
+    const product = await getById(id);
     if (!product) {
         document.getElementById("product-page").innerHTML = `
             <div class="text-center">
                 <h1 class="mb-4">Product Not Found</h1>
-                <a class="text-[#F54900] hover:text-[#b53600]" href="../pages/index.html" data-discover="true">
+                <a class="text-[#F54900] hover:text-[#b53600]" href=".." data-discover="true">
                     Return to Catalog
                 </a>
             </div>`;
         return;
     }
-
-    renderProduct(product, products);
+    await renderProduct(product);
+    updateCartBadge();
 }
 
 initProductPage();
+
+async function getById(id){
+    const DATA = await Api.getById(id);
+    return DATA;
+}
+
+function addToCart(productId, quantity){
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    if (cart[productId]) {
+        cart[productId] = cart[productId] + quantity;
+    }
+    else {
+        cart[productId] = quantity;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+document.getElementById("reduce-quantity-button").addEventListener("click", function(){
+    const quantityInput = document.getElementById("quantity-input");
+    quantityInput.value = parseInt(quantityInput.value)-1;
+});
+
+document.getElementById("add-quantity-button").addEventListener("click", function(){
+    const quantityInput = document.getElementById("quantity-input");
+    quantityInput.value = parseInt(quantityInput.value)+1;
+});
+
+document.getElementById("add-to-cart-button").addEventListener("click", function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const quantity = parseInt(document.getElementById("quantity-input").value);
+    const productName = document.getElementById("product-name").textContent;
+    addToCart(productId, quantity);
+    showNotification("Added " + productName + " to cart");
+    updateCartBadge();
+});
+
+document.getElementById("buy-now-button").addEventListener("click", function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const quantity = parseInt(document.getElementById("quantity-input").value);
+    const productName = document.getElementById("product-name").textContent;
+    addToCart(productId, quantity);
+    showNotification("Added " + productName + " to cart");
+    window.location.href = "/cart";
+});
+
+function updateCartBadge() {
+    const badge = document.getElementById("cart-quantity-text");
+    const cart = JSON.parse(localStorage.getItem("cart")) || {};
+    let totalQuantity = 0;
+    Object.values(cart).forEach(quantity => {
+        totalQuantity += quantity;
+    });
+    badge.textContent = totalQuantity;
+    if (totalQuantity === 0) {
+        badge.style.display = "none";
+    } else {
+        badge.style.display = "flex";
+    }
+}
+
+function showNotification(message) {
+    const container = document.getElementById("notification-container");
+    const notification = document.createElement("div");
+    notification.className = "my-notification";
+    notification.innerHTML = `
+        <svg class="notification-success-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+        </svg>
+        <div class="notification-message">${message}</div>
+    `;
+    container.appendChild(notification);
+    setTimeout(() => {
+        notification.classList.add("notification-fade-out");
+        notification.addEventListener("animationend", () => notification.remove());
+    }, 3000);
+}

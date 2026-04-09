@@ -1,8 +1,11 @@
 package com.example.buildMart.controllers;
 
+import com.example.buildMart.models.Cart;
+import com.example.buildMart.models.Category;
 import com.example.buildMart.models.Product;
 import com.example.buildMart.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +21,7 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public List<Product> findAllByPage(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size){
+    public Page<Product> findAllByPage(@RequestParam Integer page, @RequestParam Integer size){
         return productService.findAllByPage(page, size);
     }
 
@@ -27,13 +30,18 @@ public class ProductController {
         return  productService.findById(id);
     }
 
-    @GetMapping("/category/{category}")
-    public List<Product> findByCategory(@PathVariable String category){
-        return productService.findByCategory(category);
+    @GetMapping("/categories")
+    public List<Category> findAllCategories(){
+        return productService.findAllCategories();
+    }
+
+    @GetMapping("/discount")
+    public List<Product> findByDiscount(){
+        return  productService.findByDiscount();
     }
 
     @GetMapping("/params")
-    public List<Product> findByParams(@RequestParam(required = false) Float rating, @RequestParam Float minPrice, @RequestParam Float maxPrice, @RequestParam Integer page, @RequestParam Integer size){
-        return productService.findByParams(rating ,minPrice, maxPrice, page, size);
+    public Page<Product> findAllByParams(@RequestParam(required = false) Float rating, @RequestParam(required = false) Float minPrice, @RequestParam(required = false) Float maxPrice, @RequestParam(required = false) String category, @RequestParam Integer page, @RequestParam Integer size){
+        return productService.findAllByParams(rating, minPrice, maxPrice, category, page, size);
     }
 }

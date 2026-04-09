@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Website Design</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles_test/index.css">
 </head>
 <body>
 <div class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-100  border-b border-[#E5E7EB] bg-white">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20 gap-4">
-                <a class="flex items-center flex-shrink-0 gap-2" href="../pages/index.html">
+                <a class="flex items-center flex-shrink-0 gap-2" href="..">
                     <div class="flex items-center justify-center size-10 rounded-[10px] bg-[#F54900]">
                         <span class="text-white font-bold text-xl ">BM</span>
                     </div>
                     <span class="hidden lg:block text-xl font-bold text-[#101828]">BuildMart</span>
                 </a>
                 <nav class="hidden md:flex items-center gap-8 ">
-                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../pages/index.html">Products</a>
-                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../pages/categories.html">Categories</a>
-                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../pages/deals.html">Deals</a>
-                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../pages/about.html">About</a>
+                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="..">Products</a>
+                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../categories">Categories</a>
+                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../deals">Deals</a>
+                    <a class="text-[#364153] hover:text-[#F54900] transition-colors" href="../about">About</a>
                 </nav>
                 <div class="hidden md:flex flex-1 items-center max-w-md">
                     <div class="relative w-full">
@@ -37,12 +38,12 @@
                             <path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>
                         </svg>
                     </button>
-                    <a class="relative p-2 text-[#99A1AF] hover:text-[#F54900] transition-colors" href="../pages/cart.html">
+                    <a class="relative p-2 text-[#99A1AF] hover:text-[#F54900] transition-colors" href="../cart">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 "><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
                             <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                         </svg>
-                        <span class="absolute flex items-center justify-center -top-1 -right-1 bg-[#F54900] text-white text-xs size-5 rounded-full">
-                    1
+                        <span id="cart-quantity-text" style="display: none" class="absolute flex items-center justify-center -top-1 -right-1 bg-[#F54900] text-white text-xs size-5 rounded-full">
+                    0
                     </span>
                     </a>
                     <button class="p-2 text-[#99A1AF] hover:text-[#F54900] transition-colors md:hidden">
@@ -55,7 +56,9 @@
         </div>
     </header>
     <main class="flex-1 bg-white text-[#4A5565]">
-        <div class="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8">
+        <div class="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8" id="cart-main-container">
+            <div class="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8">
+            <div id="notification-container" class="notification-container"></div>
             <h1 class="text-4xl font-bold text-[#101828] mb-8">Shopping Cart</h1>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2">
@@ -66,96 +69,43 @@
                             <div class="col-span-2 text-center">Quantity</div>
                             <div class="col-span-2 text-right">Total</div>
                         </div>
-                        <div class="divide-y divide-[#E5E7EB]">
-                            <div class="p-4 md:p-6">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-                                    <div class="md:col-span-6 flex gap-4">
-                                        <a class="flex-shrink-0" href="../pages/product.html?id=4" data-discover="true">
-                                            <img src="../images/planks.jpg" alt="Premium Lumber Planks" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg">
-                                        </a>
-                                        <div class="flex-1">
-                                            <a class="font-semibold text-[#101828] hover:text-[#F54900] transition" href="../pages/product.html?id=4" data-discover="true">
-                                                Premium Lumber Planks
-                                            </a>
-                                            <p class="text-sm text-[#4A5565] mt-1">Wood & Lumber</p>
-                                            <button class="md:hidden flex items-center gap-1 text-sm text-red-700 hover:text-red-800 mt-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
-                                                    <path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line>
-                                                </svg>
-                                                Remove
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="md:col-span-2 md:text-center">
-                                        <span class="md:hidden text-sm text-[#4A5565]">Price:</span>
-                                        <span class="text-black font-semibold">$89.99</span>
-                                    </div>
-                                    <div class="md:col-span-2 flex justify-start md:justify-center">
-                                        <div class="flex items-center gap-2 border border-gray-300 rounded-lg">
-                                            <button class="w-8 h-8 flex items-center justify-center hover:bg-gray-50 transition">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
-                                                    <path d="M5 12h14"></path>
-                                                </svg>
-                                            </button>
-                                            <span class="text-black w-12 text-center font-semibold">1</span>
-                                            <button class="w-8 h-8 flex items-center justify-center hover:bg-gray-50 transition">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
-                                                    <path d="M5 12h14"></path><path d="M12 5v14"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="md:col-span-2 flex justify-between md:justify-end items-center">
-                                        <span class="md:hidden text-sm text-[#4A5565]">Total: </span>
-                                        <span class="text-black font-bold text-lg">$89.99</span>
-                                        <button class="hidden md:block ml-4 text-red-700 hover:text-red-800 transition">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
-                                                <path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="divide-y divide-[#E5E7EB]" id="cart-products"></div>
                     </div>
                     <div class="mt-6 bg-white border border-[#E5E7EB] rounded-lg p-6">
                         <h3 class="text-black font-semibold mb-3">Have a promo code?</h3>
                         <div class="flex gap-2">
-                            <input type="text" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" value="">
-                            <button class="px-6 py-2 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg transition">
+                            <input type="text" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" id="promocode-input" value="">
+                            <button class="px-6 py-2 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg transition" id="promocode-button">
                                 Apply
                             </button>
                         </div>
-                        <p class="text-sm text-[#F54900] mt-2">Promo code applied! You saved 10%</p>
+                        <p class="text-sm text-grey mt-2" id="promocode-text-info">Try code "SAVE10" for 10% off</p>
                     </div>
                 </div>
                 <div class="lg:col-span-1">
                     <div class="bg-white border border-gray-200 rounded-lg p-6 top-24">
                         <h2 class="text-black font-bold text-xl mb-6">Order Summary</h2>
-                        <div class="space-y-3 mb-6 pb-6 border-b border-gray-200"><div class="flex justify-between text-[#364153]">
-                            <span>Subtotal</span>
-                            <span>$345.94</span>
+                        <div class="space-y-3 mb-6 pb-6 border-b border-gray-200" id="cart-price-container">
+                            <div class="flex justify-between text-[#364153]">
+                                <span>Subtotal</span>
+                                <span class="price-value" id="price-value-total"></span>
+                            </div>
+                            <div class="flex justify-between text-[#364153]">
+                                <span>Tax (8%)</span>
+                                <span class="price-value" id="price-value-tax"></span>
+                            </div>
                         </div>
-                        <div class="flex justify-between text-[#364153]">
-                            <span>Tax (8%)</span>
-                            <span>$32.62</span>
+                        <div class="text-black flex justify-between items-center mb-6 text-xl font-bold">
+                            <span>Total</span>
+                            <span id="cart-price-total"></span>
                         </div>
-                        <div class="flex justify-between text-[#F54900]">
-                            <span>Discount (10%)</span>
-                            <span>-$23.62</span>
-                        </div>
-                    </div>
-                    <div class="text-black flex justify-between items-center mb-6 text-xl font-bold">
-                        <span>Total</span>
-                        <span>$323.234</span>
-                    </div>
-                        <button class="w-full py-4 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition mb-4">
+                        <button id="checkout-button" class="w-full py-4 bg-[#F54900] hover:bg-[#b53600] text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition mb-4">
                             Proceed to Checkout
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
                             </svg>
                         </button>
-                        <a class="text-black block w-full py-3 text-center border border-gray-300 rounded-lg hover:bg-gray-50 transition" href="../pages/index.html" data-discover="true">
+                        <a class="text-black block w-full py-3 text-center border border-gray-300 rounded-lg hover:bg-gray-50 transition" href=".." data-discover="true">
                             Continue Shopping
                         </a>
                     </div>
@@ -183,16 +133,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <h1 class="text-3xl text-black font-bold mb-4">Your Cart is Empty</h1>
-                <p class="mb-8">Start shopping to add items to your cart</p>
-                <a class="inline-flex items-center gap-2 px-8 py-3 font-medium bg-[#F54900] text-white  hover:bg-[#b53600]  rounded-lg transition" href="../pages/index.html">
-                    Browse Products
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white size-5">
-                        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                    </svg>
-                </a>
             </div>
         </div>
     </main>
@@ -294,5 +234,6 @@
         </div>
     </footer>
 </div>
+<script type="module" src="../scripts/cartPage.js"></script>
 </body>
 </html>
