@@ -1,3 +1,5 @@
+import * as Utils from "./utils.js";
+
 function updateCartBadge() {
     const badge = document.getElementById("cart-quantity-text");
     const cart = JSON.parse(localStorage.getItem("cart")) || {};
@@ -15,6 +17,7 @@ function updateCartBadge() {
 
 function initAboutPage(){
     updateCartBadge();
+    Utils.initMobileHeader();
 }
 
 initAboutPage();

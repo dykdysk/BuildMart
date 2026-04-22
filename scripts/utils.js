@@ -46,3 +46,38 @@ export function showNotification(message) {
         notification.addEventListener("animationend", () => notification.remove());
     }, 3000);
 }
+
+
+export function initMobileHeader() {
+    const burgerBtn = document.getElementById("burger-btn");
+    const searchBtn = document.getElementById("search-btn");
+
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileSearch = document.getElementById("mobile-search");
+
+
+    if (!burgerBtn && !searchBtn) return;
+
+    if (burgerBtn && mobileMenu) {
+        burgerBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            if (mobileSearch) mobileSearch.classList.add("hidden");
+        });
+    }
+
+    if (searchBtn && mobileSearch) {
+        searchBtn.addEventListener("click", () => {
+            mobileSearch.classList.toggle("hidden");
+            if (mobileMenu) mobileMenu.classList.add("hidden");
+        });
+    }
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+            if (mobileMenu) mobileMenu.classList.add("hidden");
+            if (mobileSearch) mobileSearch.classList.add("hidden");
+        }
+    });
+}
+
+

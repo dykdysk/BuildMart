@@ -280,6 +280,7 @@ async function initCatalogPage() {
     sortProducts(sortSelector.value);
     updatePagination();
     updateCartBadge();
+    Utils.initMobileHeader();
 }
 
 initCatalogPage();

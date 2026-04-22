@@ -89,6 +89,7 @@ async function initDealsPage() {
     const products = await getByDiscount();
     renderDealsPage(products);
     updateCartBadge();
+    Utils.initMobileHeader();
 }
 
 initDealsPage();

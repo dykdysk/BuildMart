@@ -1,5 +1,6 @@
 import * as Data from "./data.js";
 import * as Api from "./testService.js";
+import * as Utils from "./utils.js";
 
 function renderCategoriesPage(products) {
     const container = document.getElementById("categories-grid");
@@ -46,6 +47,7 @@ async function initCategoriesPage() {
     const products = await getAllCategories();
     renderCategoriesPage(products);
     updateCartBadge();
+    Utils.initMobileHeader();
 }
 
 initCategoriesPage();

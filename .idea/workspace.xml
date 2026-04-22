@@ -12,7 +12,12 @@
       <change beforePath="$PROJECT_DIR$/pages/deals.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/deals.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/aboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/aboutPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/categoriesPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/categoriesPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/dealsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/dealsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/indexPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/indexPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/productPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/productPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +53,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dykdysk&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;last_opened_file_path&quot;: &quot;F:/рабочий стол/BuildMartProject/BuildMart&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -70,7 +78,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-WS-252.25557.126" />
+        <option value="bundled-js-predefined-d6986cc7102b-3bd3a6803838-JavaScript-WS-261.22158.274" />
       </set>
     </attachedChunks>
   </component>
@@ -93,6 +101,23 @@
       <workItem from="1773298346665" duration="7783000" />
       <workItem from="1773316811092" duration="20942000" />
       <workItem from="1773474257104" duration="16963000" />
+      <workItem from="1773498463726" duration="159000" />
+      <workItem from="1773572191371" duration="4000" />
+      <workItem from="1773602541018" duration="4000" />
+      <workItem from="1774167016164" duration="27000" />
+      <workItem from="1776215094120" duration="158000" />
+      <workItem from="1776250969010" duration="14000" />
+      <workItem from="1776250992520" duration="23000" />
+      <workItem from="1776251023945" duration="22000" />
+      <workItem from="1776251849369" duration="18000" />
+      <workItem from="1776251884293" duration="44000" />
+      <workItem from="1776251935618" duration="46000" />
+      <workItem from="1776252213581" duration="44000" />
+      <workItem from="1776257852338" duration="36000" />
+      <workItem from="1776257903896" duration="125000" />
+      <workItem from="1776458395995" duration="215000" />
+      <workItem from="1776793857233" duration="266000" />
+      <workItem from="1776883764285" duration="1520000" />
     </task>
     <servers />
   </component>

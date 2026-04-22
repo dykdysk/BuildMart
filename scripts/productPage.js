@@ -236,6 +236,7 @@ async function initProductPage() {
     }
     await renderProduct(product);
     updateCartBadge();
+    Utils.initMobileHeader();
 }
 
 initProductPage();
