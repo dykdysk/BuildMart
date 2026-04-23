@@ -86,7 +86,6 @@ function renderCartItems(cart) {
             const productId = btn.getAttribute("data-id");
             deleteFromCart(productId);
             if(checkIfCartNull(DATA.productQuantity)){
-                console.log(DATA);
                 renderCartItems(DATA);
                 updatePrices(DATA);
             }
@@ -202,7 +201,7 @@ document.getElementById("promocode-button").addEventListener("click", async func
     if(!promocode){
         const promocodeTextInfo = document.getElementById("promocode-text-info");
         promocodeTextInfo.textContent = "Something went wrong. Try again";
-
+        return;
     }
     PROMOCODE = promocode;
     applyPromoCode();
